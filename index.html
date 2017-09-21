@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="swiper-3.4.2.min.css">
+   <style>
+        *{
+        	margin: 0;
+        	padding: 0;
+        }
+        .clearfix::after {
+		    visibility: hidden;
+		    clear: both;
+		    display: block;
+		    height: 0;
+		    font-size: 0;
+		    content: " ";
+		}
+		.fl{
+			float: left;
+		}
+		.fr{
+			float: right;
+		}
+		h3{
+			height: 54px;
+		    box-sizing: border-box;
+		    line-height: 54px;
+		    padding-left: 10px;
+		    border-bottom: 3px solid #019eeb;
+		    font-size: 16px;
+		    font-weight: 400;
+		    margin-bottom: 18px;
+		}
+		.redRemind {
+		    color: #ff0000;
+		}
+		.formBox {
+		    padding-bottom: 20px;
+		}
+textarea{
+	resize: none;
+}
+input[type='button']{
+	outline: none;
+	cursor: pointer;
+}
+.inputList.clearfix {
+    line-height: 48px;
+    font-size: 14px;
+}
+.inputList.clearfix>div:first-child {
+    width: 200px;
+    text-align: right;
+    padding-right: 7px;
+    height: 48px;
+}
+.inputList.clearfix>div:nth-child(2)>input:first-child,
+.inputList.clearfix>div:nth-child(2)>select,
+.inputList.clearfix>div:nth-child(2)>textarea
+{
+    display: inline-block;
+    height: 34px;
+    border-radius: 4px;
+    border: 1px solid #999999;
+    outline: none;
+    padding-left: 5px;
+    width: 346px;
+    vertical-align: middle;
+}
+.inputList.clearfix>div:nth-child(2)>select{
+	width:354px;
+}
+.inputList.clearfix>div:nth-child(2)>textarea{
+	height: 108px;
+    width: 354px;
+    box-sizing: border-box;
+    padding: 11px 7px;
+    margin: 5px 0;
+}
+.inputList.clearfix>div:nth-child(2)>input:nth-child(2) {
+    display: inline-block;
+    height: 36px;
+    background-color: #f5f5f5;
+    border: 1px solid #d2d2d2;
+    outline: none;
+    padding: 0px 14px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+.inputsubmit>input {
+    display: inline-block;
+    border: none;
+    background-color: #019eeb;
+    color: #fff;
+    padding: 7px 50px;
+    border-radius: 4px;
+    margin-right: 40px;
+}
+.inputsubmit {
+    padding-left: 236px;
+    padding-top: 15px;
+}
+.inputList label {
+    color: #ff0000;
+}
+.inputList.clearfix>div:nth-child(2){
+	position: relative;
+}
+.uploadImgBox {
+    display: inline-block;
+    height: 122px;
+    width: 122px;
+    float: left;
+    border: 1px solid #d2d2d2;
+    border-radius: 4px;
+    background: url('imgDefault.png') no-repeat center;
+    background-size: contain;
+}
+input#uploadImgBtn {
+    position: absolute;
+    left: 122px;
+    top: 63px;
+}
+.uploadImgBox + label{
+    position: absolute;
+    width: 300px;
+    left: 129px;
+    top: 93px;
+}
+input#productCancel {
+    background-color: #f5f5f5;
+    border: 1px solid #d2d2d2;
+    color: #555;
+}
+input[type="checkbox"] {
+    display: inline-block;
+    height: 14px !important;
+    width: 14px !important;
+}
+select#tijianType {
+    width: 275px;
+}
+select#gaofajibing {
+    width: 237px;
+}
+.fl.addProductItem::after {
+    content: "";
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+    background: url(addProductItem.png) no-repeat center;
+    background-size: contain;
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+    top: 10px;
+    cursor: pointer;
+}
+.fl.addProductItem>input {
+    cursor: pointer;
+}
+.selectProLayer>h3 {
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+}
+.selectProLayer>div:nth-child(2) {
+    position: relative;
+    height: 427px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d2d2d2;
+}
+.selectCangku, .selectedCangku {
+    position: absolute;
+    width: 283px;
+    height: 402px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border: 1px solid #d2d2d2;
+}
+.selectCangku {
+    left: 62px;
+    top: 0px;
+}
+.selectedCangku {
+    right: 62px;
+    top: 0px;
+}
+.selectCangku>p, .selectedCangku>p {
+    height: 42px;
+    text-align: center;
+    line-height: 42px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d2d2d2;
+}
+.cangkuSearch {
+    height: 51px;
+    line-height: 51px;
+    text-align: center;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d2d2d2;
+    position: relative;
+}
+.cangkuSearch input {
+    display: inline-block;
+    height: 34px;
+    width: 235px;
+    border-radius: 4px;
+    border: 1px solid #d2d2d2;
+    outline: none;
+    box-sizing: border-box;
+    padding: 0 40px 0 10px;
+    position: relative;
+    top: -3px;
+}
+.goSearch {
+	position: absolute;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 39px;
+    height: 32px;
+    border-left: 1px solid #d2d2d2;
+    right: 25px;
+    top: 9px;
+    cursor: pointer;
+    background: url(cangkuSearch.png) no-repeat 1px 1px;
+}
+/* .cangkuListBox.hiddenList{
+	height: 42px;
+	overflow: hidden;
+} */
+.cangkuListBox>div {
+    height: 42px;
+    line-height: 42px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #d2d2d2;
+    position: relative;
+}
+.cangkuListBox>div:first-child {
+    padding-left: 35px;
+    color: #555;
+    cursor: pointer;
+}
+.cangkuListBox>div:first-child::before {
+	content: "";
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 100%;
+    background: url(cangkujiantou.png) no-repeat center;
+    left: 17px;
+}
+.cangkuScrollBox{
+    height: 307px !important;
+}
+    </style>
+</head>
+<body>
+	<div id="rightBox" class="float-right publicHidden">
+		<section>
+			<h3 class="publicBorderB_3red FontSize16 FontSizeB publicPadding10 publicMarginBot15 ">添加体检套餐产品</h3>
+			<div class="formBox">
+				<form action="">
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>套餐名称 : </span>
+							</div>
+							<div class="fl">
+								<input type="text" name="yinghang">
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>添加体检项目 : </span>
+							</div>
+							<div class="fl addProductItem">
+								<input readonly="readonly" type="text" name="yinghang">
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>标准价格 : </span>
+							</div>
+							<div class="fl">
+								<input type="text" name="yinghang">
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>优惠价格 : </span>
+							</div>
+							<div class="fl">
+								<input type="text" name="yinghang">
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>产品图片 : </span>
+							</div>
+							<div class="fl">
+								<input id="uploadImg" style="display: none;" type="file" name="yinghang">
+								<input id="uploadImgBtn" type="button" value="上传">
+								<div class="uploadImgBox"></div>
+								<label>建议图片尺寸200x200,大小不能超过800kb</label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>产品编号 : </span>
+							</div>
+							<div class="fl">
+								<input disabled="disabled" type="text" name="yinghang">
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>产品类型 : </span>
+							</div>
+							<div class="fl">
+								<input type="checkbox" name="productType">
+								<span>体检类型</span>
+								<select name="" id="tijianType">
+									<option value="0">请选择</option>
+									<option value="1">入职体检</option>
+									<option value="2">青年体检</option>
+								</select>
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+							</div>
+							<div class="fl">
+								<input type="checkbox" name="productType">
+								<span>高发疾病(可选)</span>
+								<select name="" id="gaofajibing">
+									<option value="0">请选择</option>
+									<option value="1">糖尿病</option>
+									<option value="2">肥胖症</option>
+								</select>
+								<label></label>
+							</div>
+						</div>													
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>产品备注 : </span>
+							</div>
+							<div class="fl">
+								<textarea rows="3" cols="20"></textarea>
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix">
+							<div class="fl">
+								<span class="redRemind">*</span>
+								<span>产品意义 : </span>
+							</div>
+							<div class="fl">
+								<textarea rows="3" cols="20"></textarea>
+								<label></label>
+							</div>
+						</div>
+						<div class="inputList clearfix inputsubmit">
+							<input type="button" id="productSubmit" value="提交">
+							<input type="button" id="productCancel" value="返回">
+						</div>
+					</form>
+			</div>
+		</section>
+	</div>
+
+	<div class="selectProLayer">
+		<h3>选择体检项目</h3>
+		<div>
+			<div class="selectCangku">
+				<p>体检项目库</p>
+				<div class="cangkuSearch">
+					<form action="">
+						<input type="text">
+						<div class="goSearch"></div>
+					</form>
+				</div>
+				<div class="cangkuScrollBox">
+					<div class="cangkuScrollWrapper">
+						<div class="cangkuListBox">
+							<div><b></b>科室检查</div>
+							<div class="cangkuListItem">一般检查</div>
+							<div class="cangkuListItem">内科</div>
+							<div class="cangkuListItem">外科</div>
+							<div class="cangkuListItem">眼科</div>
+							<div class="cangkuListItem">耳鼻喉科</div>
+						</div>
+						<div class="cangkuListBox">
+							<div><b></b>实验室检查</div>
+							<div class="cangkuListItem">一般检查</div>
+							<div class="cangkuListItem">内科</div>
+							<div class="cangkuListItem">外科</div>
+							<div class="cangkuListItem">眼科</div>
+							<div class="cangkuListItem">耳鼻喉科</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="selectedCangku">
+				<p>已添加项目</p>
+				<div class="cangkuSearch">
+					<form action="">
+						<input type="text">
+						<div class="goSearch"></div>
+					</form>
+				</div>
+					<div class="cangkuScrollBox swiper-container">
+						<div class="cangkuScrollWrapper swiper-wrapper">
+							<div class="cangkuListBox swiper-slide">
+								<div class="cangkuSwitch"><b></b>科室检查</div>
+								<div class="cangkuListItem">一般检查</div>
+								<div class="cangkuListItem">内科</div>
+								<div class="cangkuListItem">外科</div>
+								<div class="cangkuListItem">眼科</div>
+								<div class="cangkuListItem">耳鼻喉科</div>
+							</div>
+							<div class="cangkuListBox swiper-slide">
+								<div class="cangkuSwitch"><b></b>实验室检查</div>
+								<div class="cangkuListItem">一般检查</div>
+								<div class="cangkuListItem">内科</div>
+								<div class="cangkuListItem">外科</div>
+								<div class="cangkuListItem">眼科</div>
+								<div class="cangkuListItem">耳鼻喉科</div>
+							</div>
+						</div>
+					</div>
+			</div>
+		</div>
+		<div>
+			<input type="button" value="确定">
+			<input type="button" value="取消">
+		</div>
+	</div>
+
+
+	<script src="jquery.min.js"></script>
+	<script src="layer.js"></script>
+	<script src="swiper-3.4.2.jquery.min.js"></script>
+	<script>
+		$(function(){
+			$("#uploadImgBtn").on("click",function(){
+				$("#uploadImg").click();
+			})
+			layer.open({
+			  type: 1,
+			  title:false,
+			  skin: 'layui-layer-demo', //样式类名
+  			  closeBtn: 0, //不显示关闭按钮
+			  area: ['847px', '577px'], //宽高
+			  content: $(".selectProLayer")
+			});
+			createSwiper(".swiper-container");
+			$(".cangkuSwitch").on("click",cangkuSwitch)
+		})
+		//仓库开关
+		function cangkuSwitch(){
+			var $target = $(this).parent();
+			if($target.hasClass('hiddenList')){
+				$target.removeClass('hiddenList');
+			    $target.find('.cangkuListItem').show();
+				createSwiper(".swiper-container");
+				return false;
+			}
+			$target.addClass('hiddenList');
+			$target.find('.cangkuListItem').hide();
+			createSwiper(".swiper-container");
+		}
+		//坑爹的滑动层
+		function createSwiper(name){
+			new Swiper(name, {
+				direction : 'vertical',
+				mousewheelControl : true,
+				freeMode : true,
+				slidesPerView :'auto',
+				freeModeMomentum:false,
+				autoHeight: true
+			})
+		}
+	</script>
+</body>
+</html>
