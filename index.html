@@ -3,7 +3,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
-	<!-- <link rel="stylesheet" href="swiper-3.4.2.min.css"> -->
    <style>
         *{
         	margin: 0;
@@ -315,9 +314,41 @@ select#gaofajibing {
 	text-align: center;
     padding-top: 28px;
 }
-
-
-
+b.cangkuAddBtn {
+    display: inline-block;
+    position: absolute;
+    right: 16px;
+    font-weight: 400;
+    border-radius: 4px;
+    background-color: #ef8511;
+    box-sizing: border-box;
+    width: 48px;
+    text-align: center;
+    color: #fff;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+    top: 9px;
+}
+b.ListAdded {
+    background-color: transparent;
+    color: #999;
+}
+b.cangkuDeleteBtn {
+    display: inline-block;
+    position: absolute;
+    right: 16px;
+    font-weight: 400;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 48px;
+    text-align: center;
+    color: #019eeb;
+    height: 24px;
+    line-height: 24px;
+    font-size: 14px;
+    top: 9px;
+}
     </style>
 </head>
 <body>
@@ -462,24 +493,22 @@ select#gaofajibing {
 				</div>
 				<div class="cangkuScrollBox">
 					<div class="innerContainer">
-						<div class="cangkuScrollWrapper">
+						<div class="cangkuScrollWrapper" id="oldScrollWrapper">
 							<div class="cangkuListBox hiddenList">
-								<div class="cangkuSwitch"><b></b>科室检查</div>
-								<div class="cangkuListItem">
-									一般检查
-								</div>
-								<div class="cangkuListItem">内科</div>
-								<div class="cangkuListItem">外科</div>
-								<div class="cangkuListItem">眼科</div>
-								<div class="cangkuListItem">耳鼻喉科</div>
+								<div class="cangkuSwitch" type="keshi"><b></b>科室检查</div>
+								<div class="cangkuListItem" type="keshi" id="listk01">一般检查<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="keshi" id="listk02">内科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="keshi" id="listk03">外科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="keshi" id="listk04">眼科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="keshi" id="listk05">耳鼻喉科<b class="cangkuAddBtn">添加</b></div>
 							</div>
 							<div class="cangkuListBox hiddenList">
-								<div class="cangkuSwitch"><b></b>实验室检查</div>
-								<div class="cangkuListItem">一般检查</div>
-								<div class="cangkuListItem">内科</div>
-								<div class="cangkuListItem">外科</div>
-								<div class="cangkuListItem">眼科</div>
-								<div class="cangkuListItem">耳鼻喉科</div>
+								<div class="cangkuSwitch" type="shiyan"><b></b>实验室检查</div>
+								<div class="cangkuListItem" type="shiyan" id="lists01">一般检查<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="shiyan" id="lists02">内科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="shiyan" id="lists03">外科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="shiyan" id="lists04">眼科<b class="cangkuAddBtn">添加</b></div>
+								<div class="cangkuListItem" type="shiyan" id="lists05">耳鼻喉科<b class="cangkuAddBtn">添加</b></div>
 							</div>
 						</div>
 					</div>
@@ -497,23 +526,8 @@ select#gaofajibing {
 				</div>
 				<div class="cangkuScrollBox">
 					<div class="innerContainer">
-						<div class="cangkuScrollWrapper">
-							<div class="cangkuListBox hiddenList">
-								<div class="cangkuSwitch"><b></b>科室检查</div>
-								<div class="cangkuListItem">一般检查</div>
-								<div class="cangkuListItem">内科</div>
-								<div class="cangkuListItem">外科</div>
-								<div class="cangkuListItem">眼科</div>
-								<div class="cangkuListItem">耳鼻喉科</div>
-							</div>
-							<div class="cangkuListBox hiddenList">
-								<div class="cangkuSwitch"><b></b>实验室检查</div>
-								<div class="cangkuListItem">一般检查</div>
-								<div class="cangkuListItem">内科</div>
-								<div class="cangkuListItem">外科</div>
-								<div class="cangkuListItem">眼科</div>
-								<div class="cangkuListItem">耳鼻喉科</div>
-							</div>
+						<div id="targetScrollWrapper" class="cangkuScrollWrapper">
+							
 						</div>
 					</div>
 				</div>
@@ -529,16 +543,18 @@ select#gaofajibing {
 	<script src="layer.js"></script>
 	<script>
 		$(function(){
+			//上传图片点击事件
 			$("#uploadImgBtn").on("click",function(){
 				$("#uploadImg").click();
 			})
-
 			//控制项目弹层
 			$(".addProductItem").on("click",openSelectLayer);
 			//控制提示信息
-			$('.cangkuListItem').on('mouseover',ItemDetail);
+			$('.cangkuListItem').on('mouseenter',ItemDetail);
 			//控制一级分类开关
-			$(".cangkuSwitch").on("click",cangkuSwitch)
+			$(".cangkuSwitch").on("click",cangkuSwitch);
+			//按钮点击事件
+			$(".cangkuAddBtn").on('click',pushListItem);
 		})
 		//打开选择项目弹层
 		function openSelectLayer(){
@@ -561,13 +577,19 @@ select#gaofajibing {
 		function ItemDetail(){
 		  if($(this).parent().hasClass('hiddenList')){return}
 		  var val = $(this).attr("detail");
+		  var that = this;
 		  if(val==null){
 		  	val = "身高,体重,体重指数,血压"
 		  }
 		  layer.tips(val, this,{
-		  	  time:2000,
+		  	  time:1000*60*60,
 			  area: ['150px', 'auto'],
-			  skin: 'layui-layer-myself'
+			  skin: 'layui-layer-myself',
+			  success:function(ele,index){
+			  	$(that).on('mouseleave',function(e){
+			  		layer.close(index)
+			  	})
+			  }
 		  });
 		}
 		//仓库开关
@@ -581,6 +603,106 @@ select#gaofajibing {
 			$target.addClass('hiddenList');
 			$target.removeClass('opend');
 			
+		}
+		//添加单项
+		function pushListItem(){
+			if($(this).hasClass('ListAdded')){
+				return
+			}
+			$(this).addClass('ListAdded');
+			$(this).text("已添加");
+			//判断当前项目属于哪个分类
+			var curType = $(this).parent().attr('type');
+			//当前项目id
+			var curID = $(this).parent().attr('id');
+			//当前项目文本内容
+			var curTXT = $(this).parent().prop('firstChild').nodeValue;
+			//判断目标容器是否添加过项目了
+			var listSwitch = $("#targetScrollWrapper").find(".cangkuSwitch");
+			if(listSwitch.length){
+				var flag = true;
+				var $this;
+				listSwitch.each(function(){
+					var targetType = $(this).attr("type");
+					if(targetType == curType){
+						flag = true;
+						$this = this;
+						return false;
+					}else{
+						flag = false;
+					}
+				});
+				if(flag){//添加过,并且有同类型的项目
+					var ele = createItem(curType,curID,curTXT);
+						$($this).parent().append(ele);
+				}else{//添加过,但是没有同类型的项目
+					var ele = createListBox(curType,curID,curTXT);
+					$("#targetScrollWrapper").append(ele);
+				}
+			}else{//完全空的,没有添加过
+				var ele = createListBox(curType,curID,curTXT);
+				$("#targetScrollWrapper").append(ele);
+			}
+		}
+		//生成一种项目类型的容器列表
+		function createListBox(curType,curID,curTXT){
+			var outerDiv = $("<div class='cangkuListBox opend'></div>");
+			var firstChild = createSwitch(curType);
+			outerDiv.append(firstChild).append(createItem(curType,curID,curTXT));
+			return outerDiv;
+		}
+		//生成单个带删除功能的单项
+		function createItem(curType,curID,curTXT){
+			var ele = $('<div></div>');
+			var btn = $('<b class="cangkuDeleteBtn">删除</b>');
+			btn.on('click',function(){removeList(this,curType,curID)});
+			ele.attr("class","cangkuListItem")
+			   .attr("type",curType)
+			   .attr("id",curID)
+			   .text(curTXT)
+			   .on('mouseenter',ItemDetail)
+			   .append(btn);
+			return ele;
+		}
+		//单项删除功能
+		function removeList(obj,curType,curID){
+			var flag = checkParentDelete($(obj).parents('.cangkuListBox'));
+			if(flag){
+				$(obj).parents('.cangkuListBox').remove();
+			}else{
+				$(obj).parent().remove();
+			}
+			$("#oldScrollWrapper")
+			.find(".cangkuListItem[id='"+curID+"']")
+			.find("b")
+			.removeClass('ListAdded')
+			.text("添加");
+		}
+		//是否删除父级容器
+		function checkParentDelete(obj){
+			var num = $(obj).find(".cangkuListItem").length;
+			if(num == 1){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		//根据分类返回不同的仓库开关标签
+		function createSwitch(type){
+			var ele = $("<div class='cangkuSwitch'></div>");
+			switch(type){
+				case "shiyan":
+				ele.attr("type",type)
+				   .html('<b></b>实验室检查')
+				   .on('click',cangkuSwitch);
+				break;
+				case "keshi":
+				ele.attr("type",type)
+				   .html('<b></b>科室检查')
+				   .on('click',cangkuSwitch);
+				break;
+			}
+			return ele;
 		}
 	</script>
 </body>
